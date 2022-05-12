@@ -1,0 +1,58 @@
+
+Erick Wendel
+https://www.youtube.com/watch?v=50-9uorSYw0
+-v Triplicando a capacidade de resposta do Node.js + 99.9% de update com somente 10 linhas de código
+
+Curso: Aplicações SERVLESS na AWS
+https://conteudo.erickwendel.com.br/aplicacoes-serverless-aws
+
+
+- Técnicas de performace usando módulos internos do NodeJS
+- Benchmark rodando testes de carga
+- Gerenciamento de Erros (Uptime)
+- Recuperação de Aplicações (Processos reativos)
+- Aumentar disponibilidade (Escalabilidade)
+- Tratamento de eventos (Gracefull Shutdown)
+- Zero downtime
+
+Refs:
+-v Minicurso Gratuito de Kubernets para devs Javascript
+-v O segredo de escalar e atualizar aplicações NodeJS
+-v Gracefull Shutdown + Segredo para alta disponibilidade
+-v Javascript Expert JSExpert
+
+Combo: Estas técnicas de performace + Gracefull Shutdown
+escalar
+tolerância a falhas
+
+Módulo Cluster (processo main para coordenação e balanceamento da carga)
+PM2 - 
+
+Start
+-------------------------
+
+Iniciar a aplicação
+$ npm init -y
+
+-e Adicionar   "type": "module", no package.json abaixo do name:
+
+-x Escecutar a aplicação e conferir com curl localhost:3000
+
+-i Instalar o autocannon para teste de carga
+$ npm i -D autocannon
+
+Test de performace
+$ npx autocannon 
+> -c 500  // 500 usuarios
+> -d 30   // durante 30 segundos
+> --workers 10  
+> --renderStatusCodes // Quantificar códigos de retorno
+> --latency  // relatório completo de latência
+> --warmup [ -c 1 -d 2] // roda teste mínimo para iniciar aplicação (evita cacheamento de conexões do bd por ex.)
+> localhost:3000
+
+Finalizar processo com taskkill no powershell
+PS C:> taskkill /f /pid {processId}
+
+Instalei o watchman depois que veio o erro: Error: write EMFILE
+$ npm install watchman
